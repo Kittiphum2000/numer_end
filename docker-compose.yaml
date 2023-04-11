@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  database:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 412006
+    volumes:
+      - ./database:/docker-environment-initdb.d
+    ports:
+      - "3307:3306"
+
+  server:
+    build: ./call
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      DB_HOST: database
+      DB_USER: root
+      DB_PASSWORD: 412006
+      DB_NAME: data
+      DB_PORT: 3306
+
+  front:
+    build: ./numer-react
+    ports:
+      - "4000:3000"
+    depends_on:
+      - server

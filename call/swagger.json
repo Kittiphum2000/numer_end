@@ -1,0 +1,103 @@
+{
+  "openapi": "3.0.0",
+
+
+  "info": {
+    "title": "Swager react numer",
+    "description": "นี่คือตัวอย่างคำอธิบาย API"
+  },
+
+
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Local server"
+    }
+  ],
+
+
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+
+
+  "paths": {
+
+    "/root": {
+      "get": {
+        "summary": "ดูข้อมูลใน ตาราง root",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+
+    "/token/{pass}": {
+      "get": {
+        "summary": "ขอ Token",
+        "parameters": [
+          {
+            "name": "pass",
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+
+    "/push": {
+      "post": {
+        "summary": "เพิ่มข้อมูลลง database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "fx": {
+                    "type": "string"
+                  },
+                  "xl": {
+                    "type": "integer"
+                  },
+                  "xr": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+
+  }
+
+
+}
