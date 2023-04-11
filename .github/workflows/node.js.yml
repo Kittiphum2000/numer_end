@@ -29,3 +29,21 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - name: installmodules
+      run: |
+        cd call
+        npm install
+    - name: installmodules
+      run: |
+        cd numer-react
+        npm install
+    - name: testmodules_back
+      run: |
+        cd call
+        npm test
+    - name: testmodules_front
+      run: |
+        cd numer-react
+        npm test
+    - name: test docker
+      run: docker-compose build
